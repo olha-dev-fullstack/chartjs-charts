@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Drill Down Charts</title>
+  </head>
+  <body class="alert-warning">
+
+
+    <div class="col-md-6 offset-md-3 p-5">
+      <div class="card">
+        <div class="card-body">
+          <h1>Drill Down Charts</h1>
+        </div>
+        <div class="card-body">
+          <canvas id="myChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+
+<script>
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myLabels = ["January", "February", "March", "April", "May", "June", "July"];
+  var myData = [10, 10, 5, 2, 20, 30, 45];
+
+  function drillDownChart(click, myData) {
+    var myLabels = ["January", "February", "March", "April", "May", "June", "July"];
+
+    if(myData[0]) {
+      var x = myData[0]['_index'];
+      //alert(x);
+      window.location.href = "https://www.chart-js.com/" + myLabels[x].toLowerCase() + ".php";
+    }
+  };
+
+  var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'doughnut',
+
+    // The data for our dataset
+    data: {
+        labels: myLabels,
+        datasets: [{
+            label: "My First dataset",
+            backgroundColor: ['red', 'yellow', 'orange','green','blue','purple','black'],
+            borderColor: ['red', 'yellow', 'orange','green','blue','purple','black'],
+            data: myData,
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+      onClick: drillDownChart,
+    }
+  });
+</script>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
